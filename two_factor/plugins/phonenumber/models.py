@@ -9,6 +9,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from two_factor.gateways import make_call, send_sms
 
+from .utils import format_phone_number, mask_phone_number
+
 PHONE_METHODS = (
     ('call', _('Phone Call')),
     ('sms', _('Text Message')),
@@ -72,3 +74,11 @@ class PhoneDevice(Device):
             make_call(device=self, token=token)
         else:
             send_sms(device=self, token=token)
+
+    @property
+    def generate_challenge_button_title(self):
+        number = mask_phone_number(format_phone_number(self.number))
+        if self.method == 'sms':
+            return _('Send text message to %s') % number
+        else:
+            return _('Call number %s') % number
