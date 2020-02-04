@@ -5,10 +5,9 @@ from django.contrib.auth.hashers import make_password
 from django.test import TestCase, override_settings
 from django_otp.util import random_hex
 
-from two_factor.models import PhoneDevice
-from two_factor.utils import (
-    backup_phones, default_device, get_otpauth_url, totp_digits,
-)
+from two_factor.plugins.phonenumber.models import PhoneDevice
+from two_factor.plugins.phonenumber.utils import backup_phones
+from two_factor.utils import default_device, get_otpauth_url, totp_digits
 from two_factor.views.utils import (
     get_remember_device_cookie, salted_hmac_sha256,
     validate_remember_device_cookie,

@@ -4,6 +4,9 @@
 - The templates are now based on Bootstrap 4.
 - `DisableView` now checks user has verified before disabling two-factor on
   their account
+- The phone capability moved to a plugins folder, so if you use that capability
+  and want to keep it, you should add `two_factor.plugins.phonenumber` line in
+  your `INSTALLED_APPS` setting.
 
 ## 1.12 - 2020-07-08
 ### Added
